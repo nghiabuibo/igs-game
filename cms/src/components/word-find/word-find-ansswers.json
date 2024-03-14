@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_word_find_word_find_ansswers",
+  "info": {
+    "displayName": "Word Find Answers",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "isCorrected": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

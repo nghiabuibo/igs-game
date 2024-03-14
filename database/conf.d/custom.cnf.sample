@@ -1,0 +1,21 @@
+# custom.cnf
+
+[mysqld]
+max_connections = 600
+max_allowed_packet = 512M
+
+# InnoDB settings
+innodb_buffer_pool_size = 4G
+innodb_log_file_size = 1G
+innodb_log_buffer_size = 1G
+innodb_flush_log_at_trx_commit = 2
+
+# MyISAM settings
+key_buffer_size = 512M
+
+# Temporary table settings
+tmp_table_size = 512M
+max_heap_table_size = 512M
+
+# Thread cache settings
+thread_cache_size = 32

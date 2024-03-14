@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "results",
+  "info": {
+    "singularName": "result",
+    "pluralName": "results",
+    "displayName": "Result",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contest": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contest.contest"
+    },
+    "group": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::group.group"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "results"
+    },
+    "totalScore": {
+      "type": "integer"
+    },
+    "answers": {
+      "type": "json"
+    },
+    "totalCorrected": {
+      "type": "integer"
+    },
+    "attempt": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  }
+}

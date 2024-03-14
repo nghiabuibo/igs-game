@@ -1,0 +1,32 @@
+.wrapper {
+    min-height: 70vh;
+}
+.registerForm {
+	width: 100%;
+	max-width: 400px;
+}
+
+.registerForm input,
+.registerForm select,
+.registerForm button {
+	border-radius: 2rem;
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+	padding: 1rem 2rem;
+    width: 100%;
+}
+.registerForm input,
+.registerForm select {
+	background-color: #EEFCFF;
+	color: #375972;
+	border: none;
+}
+.registerForm button {
+	background-color: var(--main-blue);
+	color: #fff;
+	font-weight: 700;
+	border: none;
+}
+.registerForm button:hover,
+.registerForm button:focus {
+	background-color: var(--dark-blue);
+}

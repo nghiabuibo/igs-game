@@ -1,0 +1,7 @@
+.env
+.env.hn
+.env.hcm
+*.cnf
+mysql
+mysql-hn
+mysql-hcm

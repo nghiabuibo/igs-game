@@ -1,0 +1,119 @@
+.titleImage {
+    max-width: 35% !important;
+    margin: auto;
+    display: block;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 767px) {
+    .titleImage {
+        max-width: 50%;
+    }
+}
+
+.leaderboardWrapper {
+    background-color: #122053;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.leaderboardGroup {
+    background-color: rgb(46 94 177 / 0.5);
+    max-width: 300px;
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #fff;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.leaderboardEntry {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.leaderboardRanking {
+    padding: 1rem 2rem;
+    border-radius: 0 2rem 2rem 0;
+    background: rgb(0, 183, 231);
+    background: linear-gradient(120deg, rgba(0, 183, 231, 1) 0%, rgba(0, 115, 203, 1) 100%);
+    min-width: 95px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 767px) {
+    .leaderboardRanking {
+        padding: 0.75rem 1.5rem;
+        min-width: 80px;
+    }
+}
+
+.leaderboardInfo {
+    position: relative;
+    width: 100%;
+}
+
+.leaderboardInfo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(255 255 255 / 0.8);
+}
+@media (max-width: 767px) {
+    .leaderboardInfo::after {
+        bottom: -5px;
+    }
+}
+
+.leaderboardName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.leaderboardCorrected {
+    min-width: 40px;
+}
+
+.leaderboardRankingWrapper {
+    column-count: 3;
+}
+
+@media (max-width: 1199px) {
+    .leaderboardRankingWrapper {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    .leaderboardRankingWrapper {
+        column-count: 1;
+    }
+}
+
+.showTop3 {
+    border-radius: 2rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    padding: 1rem 2rem;
+    background-color: var(--main-blue);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    display: block;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+.showTop3:hover,
+.showTop3:focus {
+    background-color: var(--dark-blue);
+}

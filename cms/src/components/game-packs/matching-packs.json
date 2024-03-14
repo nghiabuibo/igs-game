@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_game_packs_matching_packs",
+  "info": {
+    "displayName": "Matching Packs"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "questions": {
+      "displayName": "Matching Questions",
+      "type": "component",
+      "repeatable": true,
+      "component": "matching.matching-questions"
+    }
+  }
+}

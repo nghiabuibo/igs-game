@@ -1,0 +1,45 @@
+.itemWrapper {
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    margin-top: 0.8rem;
+}
+
+.itemWrapper.group {
+    background-color: rgb(28 132 179 / 0.8);
+}
+
+.itemWrapper.timer {
+    background-color: rgba(14 46 101 / 0.8);
+}
+
+.itemWrapper.score {
+    background-color: rgb(255 92 92 / 0.8);
+}
+
+.itemValue {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .itemWrapper {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.8rem;
+    }
+    .itemValue {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

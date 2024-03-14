@@ -1,0 +1,58 @@
+version: "3"
+services:
+  game_hn:
+    build: 
+      context: ./game
+      dockerfile: ./Dockerfile.hn
+    ports:
+      - 8083:80
+    restart: always
+  cms_hn:
+    build: 
+      context: ./cms
+      dockerfile: ./Dockerfile.hn
+    volumes:
+      - ./cms/database:/cms/database
+      - ./cms/public:/cms/public
+    ports:
+      - 1338:1337
+    restart: always
+  database_hn:
+    image: mysql:8.0.35
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./database/.env.hn
+    volumes:
+      - ./database/mysql-hn:/var/lib/mysql
+      - ./database/conf.d:/etc/mysql/conf.d
+    ports:
+      - 3309:3306
+    restart: always
+  game_hcm:
+    build: 
+      context: ./game
+      dockerfile: ./Dockerfile.hcm
+    ports:
+      - 8084:80
+    restart: always
+  cms_hcm:
+    build: 
+      context: ./cms
+      dockerfile: ./Dockerfile.hcm
+    volumes:
+      - ./cms/database-hcm:/cms/database
+      - ./cms/public-hcm:/cms/public
+    ports:
+      - 1339:1337
+    restart: always
+  database_hcm:
+    image: mysql:8.0.35
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./database/.env.hcm
+    volumes:
+      - ./database/mysql-hcm:/var/lib/mysql
+      - ./database/conf.d:/etc/mysql/conf.d
+    ports:
+      - 3310:3306
+    restart: always

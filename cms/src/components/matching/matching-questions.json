@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_matching_matching_questions",
+  "info": {
+    "displayName": "Matching Questions",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "illustration": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios"
+      ]
+    },
+    "answers": {
+      "displayName": "Matching Answers",
+      "type": "component",
+      "repeatable": true,
+      "component": "matching.matching-answers"
+    },
+    "maxScore": {
+      "type": "integer"
+    },
+    "timeLimit": {
+      "type": "integer",
+      "default": 0
+    },
+    "isRelativeScore": {
+      "type": "boolean",
+      "default": false
+    },
+    "allowMultipleAnswers": {
+      "type": "boolean",
+      "default": true
+    },
+    "col": {
+      "type": "integer",
+      "default": 5
+    }
+  }
+}

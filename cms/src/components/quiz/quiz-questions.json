@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_quiz_quiz_questions",
+  "info": {
+    "displayName": "Quiz Questions",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "illustration": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios"
+      ]
+    },
+    "answers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "quiz.quiz-answers"
+    },
+    "maxScore": {
+      "type": "integer"
+    },
+    "timeLimit": {
+      "type": "integer",
+      "default": 0
+    },
+    "isRelativeScore": {
+      "type": "boolean",
+      "default": true
+    },
+    "allowMultipleAnswers": {
+      "type": "boolean",
+      "default": false
+    },
+    "answerType": {
+      "type": "enumeration",
+      "enum": [
+        "select",
+        "input"
+      ],
+      "default": "select"
+    },
+    "col": {
+      "type": "integer",
+      "default": 2,
+      "max": 6,
+      "min": 1
+    }
+  }
+}

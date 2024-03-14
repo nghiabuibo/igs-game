@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_game_packs_word_find_packs",
+  "info": {
+    "displayName": "Word Find Packs",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "questions": {
+      "displayName": "Word Find Questions",
+      "type": "component",
+      "repeatable": true,
+      "component": "word-find.word-find-questions"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_matching_matching_answers",
+  "info": {
+    "displayName": "Matching Answers"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "isCorrected": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    }
+  }
+}

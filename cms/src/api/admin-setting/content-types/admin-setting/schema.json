@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "admin_settings",
+  "info": {
+    "singularName": "admin-setting",
+    "pluralName": "admin-settings",
+    "displayName": "Admin Settings",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "apiToken": {
+      "type": "text"
+    }
+  }
+}

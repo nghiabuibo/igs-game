@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+#root {
+    background-image: url(assets/imgs/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+:root {
+    --main-blue: #1c467e;
+	--secondary-blue: #00A4E5;
+	--dark-blue: #142F53;
+	--main-red: #FF5C5C;
+	--main-red-rgb: 255 92 92;
+}

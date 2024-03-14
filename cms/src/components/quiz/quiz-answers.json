@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_quiz_quiz_answers",
+  "info": {
+    "displayName": "Quiz Answers",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "audios"
+      ]
+    },
+    "isCorrected": {
+      "type": "boolean",
+      "default": false,
+      "private": true
+    }
+  }
+}

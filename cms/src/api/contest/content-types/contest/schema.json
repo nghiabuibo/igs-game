@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contests",
+  "info": {
+    "singularName": "contest",
+    "pluralName": "contests",
+    "displayName": "Contest",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "gamePacks": {
+      "type": "dynamiczone",
+      "components": [
+        "game-packs.word-find-packs",
+        "game-packs.quiz-packs",
+        "game-packs.matching-packs"
+      ]
+    },
+    "titleImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

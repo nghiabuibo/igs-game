@@ -1,0 +1,46 @@
+.wordFindWrapper {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.char {
+    width: 28px;
+    height: 28px;
+    line-height: 0;
+    border: 1px solid #fff;
+    outline: none;
+    background-color: rgb(0 0 0 / 0.3);
+    user-select: none;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.found {
+    background-color: rgb(41, 148, 95);
+}
+.selected {
+    background-color: rgb(0, 140, 255);
+}
+
+.foundWord {
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: rgb(0 0 0 / 0.3);
+    border-radius: 3rem;
+    padding: 0.3rem 0.5rem;
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 550px) {
+    .char {
+        font-size: 0.5rem;
+        width: 18px;
+        height: 18px;
+    }
+}

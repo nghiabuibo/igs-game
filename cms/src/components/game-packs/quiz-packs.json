@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_game_packs_quiz_packs",
+  "info": {
+    "displayName": "Quiz Packs",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "questions": {
+      "displayName": "Quiz Questions",
+      "type": "component",
+      "repeatable": true,
+      "component": "quiz.quiz-questions"
+    }
+  }
+}

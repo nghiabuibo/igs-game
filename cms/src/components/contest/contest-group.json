@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_contest_contest_groups",
+  "info": {
+    "displayName": "Contest Group",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "group": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::group.group"
+    },
+    "contest": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contest.contest"
+    },
+    "state": {
+      "displayName": "State",
+      "type": "component",
+      "repeatable": false,
+      "component": "contest.state"
+    }
+  }
+}

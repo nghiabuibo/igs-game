@@ -1,0 +1,20 @@
+.leaderboardWrapper {
+    position: relative;
+    z-index: 1;
+    background-color: rgb(21 48 71 / 0.9);
+    padding: 1rem 0.8rem;
+    min-height: 450px;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.leaderboardTable {
+    color: #fff;
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.leaderboardTable th,
+.leaderboardTable td {
+    padding: 0.5rem 0.8rem;
+}

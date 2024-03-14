@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_word_find_word_find_questions",
+  "info": {
+    "displayName": "Word Find Questions",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "illustration": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "answers": {
+      "displayName": "Word Find Ansswers",
+      "type": "component",
+      "repeatable": true,
+      "component": "word-find.word-find-ansswers"
+    },
+    "maxScore": {
+      "type": "integer"
+    },
+    "timeLimit": {
+      "type": "integer",
+      "default": 0
+    },
+    "isRelativeScore": {
+      "type": "boolean",
+      "default": false
+    },
+    "allowMultipleAnswers": {
+      "type": "boolean",
+      "default": true
+    },
+    "puzzle": {
+      "type": "json"
+    },
+    "puzzleDimension": {
+      "type": "integer",
+      "default": 15
+    },
+    "puzzleOrientation": {
+      "type": "string",
+      "default": "horizontal,vertical"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.titleWrapper {
+    background-color: rgb(46 94 177 / 0.5);
+    max-width: 500px;
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.playerCount {
+    font-size: 14rem;
+    text-align: center;
+    line-height: 1;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.player {
+    font-size: 3rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .playerCount {
+        font-size: 7rem;
+        text-align: center;
+    }
+
+    .player {
+        font-size: 1.5rem;
+    }
+}
