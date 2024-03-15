@@ -5,7 +5,7 @@ function Top3(props) {
     const { leaderboard, setShowTop3 } = props
 
     const renderTop3 = leaderboard?.leaderboard?.map((top, index) => {
-        if (index >= 5) return false
+        if (index >= 3) return false
 
         let order, rank
         switch (index) {
@@ -19,14 +19,6 @@ function Top3(props) {
                 break;
             case 2:
                 order = 'order-lg-3'
-                rank = 2
-                break;
-            case 3:
-                order = 'order-lg-4 offset-lg-2'
-                rank = 3
-                break;
-            case 4:
-                order = 'order-lg-4'
                 rank = 3
                 break;
             default:
