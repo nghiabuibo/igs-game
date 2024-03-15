@@ -157,7 +157,7 @@ function Games(props) {
                                 </div>
 
                                 <div className="col-lg-6 d-flex align-items-center">
-                                    <div className={`py-2 px-4 m-auto ms-lg-auto me-lg-0 text-end text-white fw-bold fs-3 d-inline-block ${styles.gamePackName}`}>
+                                    <div className={`py-2 px-4 m-auto ms-lg-auto me-lg-0 text-center text-white fw-bold fs-3 d-inline-block ${styles.gamePackName}`}>
                                         {currentGamePack.name}
                                     </div>
                                 </div>

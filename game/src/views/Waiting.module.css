@@ -1,6 +1,6 @@
 .titleWrapper {
     background-color: rgb(46 94 177 / 0.5);
-    max-width: 500px;
+    max-width: 800px;
     padding: 1.5rem 2.5rem;
     border-radius: 1rem;
     text-align: center;
@@ -23,6 +23,10 @@
 }
 
 @media (max-width: 768px) {
+    .titleWrapper {
+        font-size: 1.3rem;
+    }
+
     .playerCount {
         font-size: 7rem;
         text-align: center;

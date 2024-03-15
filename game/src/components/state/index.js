@@ -7,11 +7,11 @@ const GameStateItem = (props) => {
     return (
         <div className={`d-flex align-items-center justify-content-between line-height-1 gap-2 ${styles.itemWrapper} ${className}`}>
             {
-                label &&
+                label != null &&
                 <span className={`${styles.itemLabel}`}>{label}: </span>
             }
             {
-                value &&
+                value != null &&
                 <span className={`m-auto text-uppercase ${styles.itemValue}`}>{value}</span>
             }
         </div>
