@@ -103,7 +103,7 @@ export interface MatchingMatchingQuestions extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.RichText;
     illustration: Attribute.Media;
     answers: Attribute.Component<'matching.matching-answers', true>;
     maxScore: Attribute.Integer;
@@ -136,7 +136,7 @@ export interface QuizQuizQuestions extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.RichText;
     illustration: Attribute.Media;
     answers: Attribute.Component<'quiz.quiz-answers', true>;
     maxScore: Attribute.Integer;
@@ -176,7 +176,7 @@ export interface WordFindWordFindQuestions extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.RichText;
     illustration: Attribute.Media;
     answers: Attribute.Component<'word-find.word-find-ansswers', true>;
     maxScore: Attribute.Integer;

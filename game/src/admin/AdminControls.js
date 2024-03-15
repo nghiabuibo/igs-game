@@ -144,6 +144,10 @@ function AdminControls(props) {
     }
 
     const handleChangeAttempt = (contestGroupID, action) => {
+        const c = window.confirm('Are you sure you want to change attempt?')
+        if (!c) return
+
+        // validate change attempt
         const newContestGroups = [...contestGroups]
         for (const i in newContestGroups) {
             const newContestGroup = newContestGroups[i]
@@ -268,7 +272,7 @@ function AdminControls(props) {
     return (
         <>
             <Logo />
-            <div className="container overflow-auto">
+            <div className="container-fluid overflow-auto">
                 {renderControls}
                 <div className="text-center">
                     <button className="btn btn-primary" onClick={handleSyncGameData}>Sync Game Data</button>

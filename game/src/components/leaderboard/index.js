@@ -18,7 +18,7 @@ function Leaderboard(props) {
 
     return (
         leaderboard &&
-        <div className={styles.leaderboardWrapper}>
+        <div className={`${styles.leaderboardWrapper} mb-5`}>
             {/* <p>{leaderboard.contest?.name}</p>
             <p>{leaderboard.group?.name}</p> */}
             <h4 className='fw-bold text-white text-center mt-2 mb-3'>LEADERBOARD</h4>

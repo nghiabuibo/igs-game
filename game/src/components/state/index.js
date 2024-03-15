@@ -20,11 +20,10 @@ const GameStateItem = (props) => {
 
 function GameState(props) {
     const { gameState, userResult } = props
-    console.log(userResult)
 
     return (
         <div className="mb-3">
-            <GameStateItem className={styles.group} value={userResult.group.name} />
+            <GameStateItem className={styles.group} value={userResult?.group?.name} />
             <GameStateItem className={styles.timer} label="Time" value={secondsToMinutesSeconds(gameState?.currentTimeLeft ?? 0)} />
             <GameStateItem className={styles.score} label="Score" value={userResult?.totalScore ?? 0} />
         </div>

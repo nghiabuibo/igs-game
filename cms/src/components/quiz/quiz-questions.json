@@ -7,7 +7,7 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "richtext"
     },
     "illustration": {
       "type": "media",

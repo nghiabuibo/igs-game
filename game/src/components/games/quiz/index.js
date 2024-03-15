@@ -1,6 +1,7 @@
 import styles from './quiz.module.css'
 import { useEffect, useState } from 'react'
 import { getMediaUrl } from '../../../utils/media'
+import Markdown from 'react-markdown'
 
 function Quiz(props) {
     const { gamePack, question, userResult, gameState, handleAnswer } = props
@@ -136,7 +137,9 @@ function Quiz(props) {
 
                     {
                         question.title &&
-                        <div className={`text-white fw-bold fs-2 p-3 mb-3 ${styles.questionTitle}`}>{question.title}</div>
+                        <div className={`text-white fs-2 p-3 mb-3 ${styles.questionTitle}`}>
+                            <Markdown>{question.title}</Markdown>
+                        </div>
                     }
 
                     {

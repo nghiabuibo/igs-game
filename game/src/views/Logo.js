@@ -7,10 +7,10 @@ function Logo() {
         <div className='container'>
             <div className='row align-items-center pt-5 mb-5'>
                 <div className="col-6 text-end">
-                    <img src={igsLogo} className={`${styles.logo}`} alt='iSmart Logo' />
+                    <img src={igsLogo} className={`${styles.logo}`} alt='IGS Logo' />
                 </div>
                 <div className="col-6 text-start">
-                    <img src={eventLogo} className={`${styles.logo2}`} alt='Arena Logo' />
+                    <img src={eventLogo} className={`${styles.logo2}`} alt='Open House Logo' />
                 </div>
             </div>
         </div>
