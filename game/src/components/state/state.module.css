@@ -27,19 +27,22 @@
     .itemWrapper {
         padding: 0.7rem 1.5rem;
         font-size: 0.8rem;
+        margin-top: 0.4rem;
     }
+
     .itemValue {
         font-size: 1rem;
     }
+
+    .itemWrapper.group {
+        background-color: rgb(28 132 179 / 0.9);
+    }
+    
+    .itemWrapper.timer {
+        background-color: rgba(14 46 101 / 0.9);
+    }
+    
+    .itemWrapper.score {
+        background-color: rgb(255 92 92 / 0.9);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
