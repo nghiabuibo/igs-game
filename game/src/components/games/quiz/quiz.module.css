@@ -23,7 +23,6 @@
 
 .quizContent {
     z-index: 1;
-    padding: 5%;
     counter-reset: answer-counter;
 }
 

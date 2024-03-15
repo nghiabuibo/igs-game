@@ -130,7 +130,7 @@ function Quiz(props) {
     return (
         <div className={`p-lg-4 ${styles.quizWrapper}`}>
             <div className={styles.quizContent}>
-                <div className={`text-center`}>
+                <div className={`text-center mt-3 mt-lg-0`}>
                     <div className={`text-white fw-bold fs-4 mb-3 d-inline-block ${styles.questionNumber}`}>
                         {`Question ${gameState.currentQuestion + 1}/${gamePack.questions.length}`}
                     </div>
@@ -147,7 +147,7 @@ function Quiz(props) {
                         <>
                             {
                                 question.illustration.mime?.includes('image') &&
-                                <img className={`mb-3 img-fluid`} src={getMediaUrl(question.illustration)} alt="Illustration" />
+                                <img className={`mb-3 img-fluid rounded-3`} src={getMediaUrl(question.illustration)} alt="Illustration" />
                             }
 
                             {

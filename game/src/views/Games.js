@@ -163,11 +163,18 @@ function Games(props) {
                                 </div>
 
                                 <div className="col-lg-4 order-2 order-lg-1">
-                                    <GameState gameState={gameState} userResult={userResult} />
-                                    <Leaderboard leaderboard={leaderboard} />
+                                    <div className={styles.gameStateSticky}>
+                                        <div className="d-none d-lg-block">
+                                            <GameState gameState={gameState} userResult={userResult} />
+                                        </div>
+                                        <Leaderboard leaderboard={leaderboard} />
+                                    </div>
                                 </div>
 
                                 <div className={`col-lg-8 order-1 order-lg-2`}>
+                                    <div className={`d-block d-lg-none ${styles.gameStateSticky}`}>
+                                        <GameState gameState={gameState} userResult={userResult} />
+                                    </div>
                                     {
                                         currentGamePack && currentQuestion
                                             ?
