@@ -33,9 +33,9 @@ async function getUserResult(userID) {
     // })
 
     const [existedResult] = (strapi as Strapi).gameData.results.filter(result => {
-        return result.contest.id === contestID
-        && result.group.id === groupID
-        && result.user.id === userID
+        return result.contest?.id === contestID
+        && result.group?.id === groupID
+        && result.user?.id === userID
     })
 
     if (existedResult) return existedResult
