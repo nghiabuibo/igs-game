@@ -125,8 +125,6 @@ function Quiz(props) {
             break;
     }
 
-    console.log(gamePack, question)
-
     return (
         <div className={`p-lg-4 ${styles.quizWrapper}`}>
             <div className={styles.quizContent}>

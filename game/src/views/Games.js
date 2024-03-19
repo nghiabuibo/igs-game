@@ -167,7 +167,7 @@ function Games(props) {
                                         <div className="d-none d-lg-block">
                                             <GameState gameState={gameState} userResult={userResult} />
                                         </div>
-                                        <Leaderboard leaderboard={leaderboard} />
+                                        <Leaderboard leaderboard={leaderboard} userResult={userResult} />
                                     </div>
                                 </div>
 

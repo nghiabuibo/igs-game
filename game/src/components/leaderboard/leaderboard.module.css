@@ -18,3 +18,7 @@
 .leaderboardTable td {
     padding: 0.5rem 0.8rem;
 }
+
+.me {
+    background-color: rgb(133 133 133 / 0.4);
+}

@@ -19,7 +19,7 @@ async function handleUserConnection({ strapi, io }, socket, isSyncedGameData) {
         const userResult = await getUserResult(userID)
         const userGameState = await getUserGameState(userID)
 
-        if (userResult.attempt !== userGameState.currentAttempt) {
+        if (userResult?.attempt !== userGameState?.currentAttempt) {
             socket.emit('connect_error_attempt', { message: `User already joined!` })
             return
         }

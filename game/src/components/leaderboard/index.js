@@ -1,13 +1,14 @@
 import styles from './leaderboard.module.css'
 
 function Leaderboard(props) {
-    const { leaderboard } = props
+    const { leaderboard, userResult } = props
 
     const renderLeaderboard = leaderboard.leaderboard?.map((result, index) => {
-        if (index >= 10) return false
+        const isUser = result.user?.id === userResult?.user?.id
+        if (index >= 10 && !isUser) return false
 
         return (
-            <tr key={result.id}>
+            <tr key={result.id} className={isUser ? styles.me : ''}>
                 <td className='text-center'>{index + 1}</td>
                 <td>{result.user?.name}</td>
                 <td className='text-center'>{result.totalCorrected ?? 0}</td>
