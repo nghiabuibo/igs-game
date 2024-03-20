@@ -28,8 +28,8 @@ async function getUserContest(userID, showAnswer = false) {
     // process word find game data
     const gameState = contestGroup.state
     const currentGamePack = contest.gamePacks[gameState.currentGamePack]
+    const currentQuestion = currentGamePack.questions[gameState.currentQuestion]
     if (currentGamePack.__component === 'game-packs.word-find-packs' && currentGamePack.questions && currentGamePack.questions.length) {
-        const currentQuestion: any = currentGamePack.questions[gameState.currentQuestion]
         if (currentQuestion.answers && currentQuestion.answers.length) {
             // get found words
             // const results = await strapi.entityService.findMany('api::result.result', {
@@ -59,7 +59,7 @@ async function getUserContest(userID, showAnswer = false) {
         }
     }
 
-    if (showAnswer || !gameState.currentTimeLeft) return contest
+    if (showAnswer || !gameState.currentTimeLeft || currentQuestion.answerType === 'matching') return contest
 
     const contestCloned = JSON.parse(JSON.stringify(contest))
     return removeObjectKey(contestCloned, 'isCorrected')

@@ -96,7 +96,7 @@ async function handleGameAnswer({ strapi, io }, socket, answer) {
         // }
 
         const [getAnswer] = currentQuestion.answers.filter(answer => {
-            if (currentQuestion.answerType === 'input') {
+            if (currentQuestion.answerType === 'input' || currentQuestion.answerType === 'matching') {
                 // convert vn chars to en, remove spaces and convert to lower case to compare answer
                 return vnToEn(answer.text).replace(/\s/g, '').toLowerCase() === vnToEn(answerObj.answer).replace(/\s/g, '').toLowerCase()
             }
