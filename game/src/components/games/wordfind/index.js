@@ -63,12 +63,12 @@ function WordFind(props) {
             })
             return
         }
-        
+
         // if 3rd char is in orientation range with 1st char, reset selected
         if (selected.length === 2 && getOrientation(e, selected[0])) {
             selected.length = 1
         }
-        
+
         // lock selecting orientation
         if (selected.length > 1 && orientation && orientation !== getOrientation(e)) return
 
@@ -153,7 +153,7 @@ function WordFind(props) {
 
         // skip if answer incorrrect
         if (!answer) return
-        
+
         // skip if already answered
         if (question.foundWords?.includes(answer.id)) return
 
@@ -182,12 +182,12 @@ function WordFind(props) {
         return <tr key={y}>{rows}</tr>
     })
 
-    const renderFoundwords = question.foundWords?.map(foundWord => {
-        const [answerMatch] = question.answers?.filter(answer => answer.id === foundWord)
+    const renderFoundwords = question.answers?.map(answer => {
+        const isFound = question.foundWords.some(foundWordID => foundWordID === answer.id)
         return (
-            <span key={answerMatch?.id} className={styles.foundWord}>
+            <span key={answer.id} className={`${styles.foundWord} ${isFound ? styles.found : ''}`}>
                 {
-                    answerMatch?.text
+                    answer.text
                 }
             </span>
         )
