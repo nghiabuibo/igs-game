@@ -183,7 +183,7 @@ function WordFind(props) {
     })
 
     const renderFoundwords = question.answers?.map(answer => {
-        const isFound = question.foundWords.some(foundWordID => foundWordID === answer.id)
+        const isFound = question.foundWords?.some(foundWordID => foundWordID === answer.id)
         return (
             <span key={answer.id} className={`${styles.foundWord} ${isFound ? styles.found : ''}`}>
                 {
