@@ -145,11 +145,11 @@ function WordFind(props) {
     // handle answer
     useEffect(() => {
         const word = selected.map(item => item?.letter.toLowerCase()).join('')
-        const isWordFound = question.answers?.some(answer => answer.text === word)
+        const isWordFound = question.answers?.some(answer => answer.text?.toLowerCase() === word)
         if (!isWordFound) return
 
         clearSelected()
-        const [answer] = question.answers?.filter(answer => answer.text === word)
+        const [answer] = question.answers?.filter(answer => answer.text?.toLowerCase() === word)
 
         // skip if answer incorrrect
         if (!answer) return
