@@ -18,11 +18,11 @@ COPY ./.env* ./
 COPY ./tsconfig.json ./tsconfig.json
 
 # build admin
-RUN ENV_PATH=/cms/.env.production.hn npm run build --clean
+RUN ENV_PATH=/cms/.env.production npm run build --clean
 
 # start server using pm2
 RUN npm install pm2 -g
-CMD ENV_PATH=/cms/.env.production.hn pm2-runtime start server.js
+CMD ENV_PATH=/cms/.env.production pm2-runtime start server.js
 
 # start server using forever
 # RUN npm install forever -g

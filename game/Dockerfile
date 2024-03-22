@@ -10,7 +10,7 @@ RUN npm install
 # build app
 COPY ./public ./public
 COPY ./src ./src
-COPY ./.env.production.hcm ./.env.production.local
+COPY ./.env.production.local ./.env.production.local
 RUN npm run build --clean
 
 # copy build to nginx

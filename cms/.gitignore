@@ -81,11 +81,7 @@ ssl
 .idea
 nbproject
 public/uploads/*
-!public-hn/uploads/.gitkeep
-public-hn/uploads/*
 !public/uploads/.gitkeep
-public-hcm/uploads/*
-!public-hcm/uploads/.gitkeep
 
 ############################
 # Node.js
@@ -110,8 +106,7 @@ coverage
 ############################
 
 .env
-.env.production.hn
-.env.production.hcm
+.env.production
 license.txt
 exports
 *.cache
