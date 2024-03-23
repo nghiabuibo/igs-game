@@ -27,8 +27,8 @@ function Top3(props) {
         return (
             <div key={top.user.id} className={`col-lg-4 ${order}`}>
                 <div className={`${styles.top} ${styles[`top${rank}`]}`}>
-                    <div className={styles.name}>{top.user.name}</div>
-                    <div className={styles.phone}>{top.user.phone}</div>
+                    <div className={styles.name}>{top.user?.name}</div>
+                    <div className={styles.phone}>{top.user?.phone}</div>
                     <div className={styles.score}>Corrected answers: <strong>{top.totalCorrected}</strong></div>
                     <div className={styles.score}>Total score: <strong>{top.totalScore}</strong></div>
                     <div className={styles.position}>&nbsp;</div>
