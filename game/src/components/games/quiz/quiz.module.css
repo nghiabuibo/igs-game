@@ -47,7 +47,7 @@
 
 .matchingAnswerSelect {
     min-width: 100px;
-    background-color: #bfe2fa;
+    background-color: #f5fbff;
     border-radius: 0.65rem;
     padding: 0.8rem 1rem;
     font-size: 1.5rem;
@@ -139,18 +139,17 @@
     font-size: 110%;
     font-weight: 700;
     text-align: center;
-    padding-left: 3.2rem;
-    padding-right: 4.6rem;
-    padding-bottom: 0.5rem;
+    padding: 0.8rem 4.6rem 0.8rem 1.5rem;
     background-color: #133777;
     color: #fff;
     width: 100%;
+    border-radius: 1rem;
 }
 
 .answerInputSubmit {
     width: 48px;
     position: absolute;
-    right: 8%;
+    right: 3%;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -160,11 +159,11 @@
 
 .disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+    cursor: not-allowed !important;
 }
 
 .selected {
-    background-color: #baf9f9;
+    background-color: #83ffff;
     color: #133777;
 }
 
