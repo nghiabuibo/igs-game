@@ -25,7 +25,7 @@ function Top3(props) {
                 break;
         }
         return (
-            <div key={top.user.id} className={`col-lg-4 ${order}`}>
+            <div key={index} className={`col-lg-4 ${order}`}>
                 <div className={`${styles.top} ${styles[`top${rank}`]}`}>
                     <div className={styles.name}>{top.user?.name}</div>
                     <div className={styles.phone}>{top.user?.phone}</div>
