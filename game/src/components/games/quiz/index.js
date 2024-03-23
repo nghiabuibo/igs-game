@@ -202,7 +202,7 @@ function Quiz(props) {
         case 'matching':
             const matchingAnswersClone = [...matchingAnswers]
 
-            const matchingAnswerFillInput = <div className='d-inline-flex px-2'>
+            const matchingAnswerFillInput = <div className='d-inline-flex px-3'>
                 {
                     matchingAnswersClone?.length && matchingAnswersClone
                         .sort((a, b) => {

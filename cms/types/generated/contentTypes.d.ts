@@ -362,192 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiAdminSettingAdminSetting extends Schema.SingleType {
-  collectionName: 'admin_settings';
-  info: {
-    singularName: 'admin-setting';
-    pluralName: 'admin-settings';
-    displayName: 'Admin Settings';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    apiToken: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::admin-setting.admin-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::admin-setting.admin-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiContestContest extends Schema.CollectionType {
-  collectionName: 'contests';
-  info: {
-    singularName: 'contest';
-    pluralName: 'contests';
-    displayName: 'Contest';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    gamePacks: Attribute.DynamicZone<
-      [
-        'game-packs.word-find-packs',
-        'game-packs.quiz-packs',
-        'game-packs.matching-packs'
-      ]
-    >;
-    titleImage: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contest.contest',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contest.contest',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiContestSettingContestSetting extends Schema.SingleType {
-  collectionName: 'contest_settings';
-  info: {
-    singularName: 'contest-setting';
-    pluralName: 'contest-settings';
-    displayName: 'Contest Settings';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    contestGroups: Attribute.Component<'contest.contest-group', true>;
-    bgm: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::contest-setting.contest-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::contest-setting.contest-setting',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiGroupGroup extends Schema.CollectionType {
-  collectionName: 'groups';
-  info: {
-    singularName: 'group';
-    pluralName: 'groups';
-    displayName: 'Group';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    code: Attribute.UID;
-    grades: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiResultResult extends Schema.CollectionType {
-  collectionName: 'results';
-  info: {
-    singularName: 'result';
-    pluralName: 'results';
-    displayName: 'Result';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    contest: Attribute.Relation<
-      'api::result.result',
-      'oneToOne',
-      'api::contest.contest'
-    >;
-    group: Attribute.Relation<
-      'api::result.result',
-      'oneToOne',
-      'api::group.group'
-    >;
-    user: Attribute.Relation<
-      'api::result.result',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    totalScore: Attribute.Integer;
-    answers: Attribute.JSON;
-    totalCorrected: Attribute.Integer;
-    attempt: Attribute.Integer &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::result.result',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::result.result',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -981,6 +795,192 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAdminSettingAdminSetting extends Schema.SingleType {
+  collectionName: 'admin_settings';
+  info: {
+    singularName: 'admin-setting';
+    pluralName: 'admin-settings';
+    displayName: 'Admin Settings';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    apiToken: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::admin-setting.admin-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::admin-setting.admin-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContestContest extends Schema.CollectionType {
+  collectionName: 'contests';
+  info: {
+    singularName: 'contest';
+    pluralName: 'contests';
+    displayName: 'Contest';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    gamePacks: Attribute.DynamicZone<
+      [
+        'game-packs.word-find-packs',
+        'game-packs.quiz-packs',
+        'game-packs.matching-packs'
+      ]
+    >;
+    titleImage: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contest.contest',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contest.contest',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContestSettingContestSetting extends Schema.SingleType {
+  collectionName: 'contest_settings';
+  info: {
+    singularName: 'contest-setting';
+    pluralName: 'contest-settings';
+    displayName: 'Contest Settings';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    contestGroups: Attribute.Component<'contest.contest-group', true>;
+    bgm: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contest-setting.contest-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contest-setting.contest-setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGroupGroup extends Schema.CollectionType {
+  collectionName: 'groups';
+  info: {
+    singularName: 'group';
+    pluralName: 'groups';
+    displayName: 'Group';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    code: Attribute.UID;
+    grades: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::group.group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::group.group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiResultResult extends Schema.CollectionType {
+  collectionName: 'results';
+  info: {
+    singularName: 'result';
+    pluralName: 'results';
+    displayName: 'Result';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    contest: Attribute.Relation<
+      'api::result.result',
+      'oneToOne',
+      'api::contest.contest'
+    >;
+    group: Attribute.Relation<
+      'api::result.result',
+      'oneToOne',
+      'api::group.group'
+    >;
+    user: Attribute.Relation<
+      'api::result.result',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    totalScore: Attribute.Integer;
+    answers: Attribute.JSON;
+    totalCorrected: Attribute.Integer;
+    attempt: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::result.result',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::result.result',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -991,11 +991,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::admin-setting.admin-setting': ApiAdminSettingAdminSetting;
-      'api::contest.contest': ApiContestContest;
-      'api::contest-setting.contest-setting': ApiContestSettingContestSetting;
-      'api::group.group': ApiGroupGroup;
-      'api::result.result': ApiResultResult;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -1004,6 +999,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::admin-setting.admin-setting': ApiAdminSettingAdminSetting;
+      'api::contest.contest': ApiContestContest;
+      'api::contest-setting.contest-setting': ApiContestSettingContestSetting;
+      'api::group.group': ApiGroupGroup;
+      'api::result.result': ApiResultResult;
     }
   }
 }
