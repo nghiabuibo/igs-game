@@ -6,6 +6,7 @@ import shuffleArray from '../../../utils/shuffleArray'
 import reactStringReplace from 'react-string-replace'
 
 function Quiz(props) {
+    const MATCHING_DELIMITER = '_'
     const { gamePack, question, userResult, gameState, handleAnswer } = props
     const { answers } = question
     const [firstCorrectedAnswer] = answers?.filter(answer => answer.isCorrected)
@@ -56,7 +57,7 @@ function Quiz(props) {
         // for matching quiz
         if (question.answerType === 'matching') {
             if (userSubmitted?.answer) {
-                const matchingUserAnswersMap = userSubmitted?.answer.split('|').map((text, index) => ({
+                const matchingUserAnswersMap = userSubmitted?.answer.split(MATCHING_DELIMITER).map((text, index) => ({
                     originIndex: index,
                     order: index + 1,
                     text
@@ -64,7 +65,7 @@ function Quiz(props) {
                 // const matchingUserAnswersMapShuffle = shuffleArray(matchingUserAnswersMap)
                 setMatchingAnswers(matchingUserAnswersMap)
             } else {
-                const answerArr = firstCorrectedAnswer?.text?.split('|')
+                const answerArr = firstCorrectedAnswer?.text?.split(MATCHING_DELIMITER)
                 if (!answerArr || !answerArr.length) {
                     setMatchingAnswers([])
                     return
@@ -106,7 +107,7 @@ function Quiz(props) {
 
     const handleMatchingAnswerSubmit = () => {
         if (matchingAnswers.some(answer => answer.order <= 0)) return
-        const answerJoined = [...matchingAnswers].sort((a, b) => a.order - b.order).map(answer => answer.text).join('|')
+        const answerJoined = [...matchingAnswers].sort((a, b) => a.order - b.order).map(answer => answer.text).join(MATCHING_DELIMITER)
         handleAnswer(answerJoined)
     }
 
@@ -254,7 +255,7 @@ function Quiz(props) {
             renderAnswer = <>
                 {
                     !gameState?.currentTimeLeft && isInCorrected &&
-                    <div className={styles.answer}>{answers?.filter(answer => answer.isCorrected)[0]?.text.split('|').join('')}</div>
+                    <div className={styles.answer}>{answers?.filter(answer => answer.isCorrected)[0]?.text.split(MATCHING_DELIMITER).join('')}</div>
                 }
                 <div className={`d-flex align-items-center justify-content-center flex-wrap gap-3`}>
                     {renderAnswer}
