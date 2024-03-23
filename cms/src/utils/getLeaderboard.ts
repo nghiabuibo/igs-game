@@ -30,9 +30,10 @@ async function getLeaderboard(contestGroup) {
             }
         })
 
-    for (const i in leaderboard) {
-        const entry: any = leaderboard[i]
-        const userPhone = `******${entry.user?.phone?.substr(entry.user.phone.length - 4)}`
+    for (const entry of leaderboard) {
+        if (!entry.user?.phone) continue
+
+        const userPhone = `******${entry.user.phone.substr(entry.user.phone.length - 4)}`
         entry.user.phone = userPhone
     }
 
