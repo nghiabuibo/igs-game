@@ -41,7 +41,7 @@ function Authentication(props) {
 
     const renderGradeOptions = group?.attributes?.grades?.split(',').map(grade => {
         return (
-            <option key={grade} value={grade}>Khối {grade}</option>
+            <option key={grade} value={grade}>Khối {parseInt(grade) === 0 ? 'K' : grade}</option>
         )
     })
 
