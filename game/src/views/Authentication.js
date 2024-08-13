@@ -7,8 +7,9 @@ import styles from './Authentication.module.css'
 import Logo from "./Logo";
 
 function Authentication(props) {
-    const { setAccessToken, group } = props
+    const { handleLogin, group } = props
     const [authInfo, setAuthInfo] = useState({
+        contestantID: '',
         name: '',
         phone: '',
         email: '',
@@ -35,8 +36,7 @@ function Authentication(props) {
             return
         }
 
-        localStorage.setItem('access_token', response.data.accessToken)
-        setAccessToken(response.data.accessToken)
+        handleLogin(response.data.accessToken)
     }
 
     const renderGradeOptions = group?.attributes?.grades?.split(',').map(grade => {
@@ -50,6 +50,9 @@ function Authentication(props) {
             <Logo />
             <div className={`d-flex align-items-center justify-content-center ${styles.wrapper}`}>
                 <form onSubmit={handleSubmit} className={`d-flex flex-column gap-4 ${styles.registerForm}`} autoComplete="off">
+                    <div>
+                        <input type="text" name="contestantID" value={authInfo.contestantID} placeholder="Contestant ID" onChange={handleChange} required={true} />
+                    </div>
                     <div>
                         <input type="text" name="name" value={authInfo.name} placeholder="Họ và tên" onChange={handleChange} required={true} />
                     </div>

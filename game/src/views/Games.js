@@ -16,7 +16,7 @@ import "./GamesBg.css";
 // import axios from "axios";
 
 function Games(props) {
-    const { accessToken, setAccessToken } = props
+    const { accessToken, handleLogout } = props
     const [gamePacks, setGamePacks] = useState([])
     const [gameState, setGameState] = useState({})
     const [userResult, setUserResult] = useState({})
@@ -36,8 +36,7 @@ function Games(props) {
     useEffect(() => {
         const handleConnectError = (err) => {
             handleRequestError(err)
-            localStorage.setItem('access_token', '')
-            setAccessToken('')
+            handleLogout()
         }
         socket.on('connect_error', handleConnectError)
         socket.on('connect_error_attempt', handleConnectError)
@@ -46,21 +45,20 @@ function Games(props) {
             socket.off('connect_error')
             socket.off('connect_error_attempt')
         }
-    }, [setAccessToken])
+    }, [handleLogout])
 
     // handle game state attempt change
     useEffect(() => {
         socket.on('game:updateGameState', (gameState) => {
             if (!userResult.id || gameState.currentAttempt === userResult.attempt) return
             handleRequestError({ message: 'User already joined!' })
-            localStorage.setItem('access_token', '')
-            setAccessToken('')
+            handleLogout()
         })
 
         return () => {
             socket.off('game:updateGameState')
         }
-    }, [userResult.id, userResult.attempt, setAccessToken])
+    }, [userResult.id, userResult.attempt, handleLogout])
 
     // setup socket events
     useEffect(() => {

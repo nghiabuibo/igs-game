@@ -778,6 +778,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     phone: Attribute.String;
     grade: Attribute.String;
     name: Attribute.String;
+    contestantID: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

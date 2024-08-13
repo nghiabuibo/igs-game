@@ -1,0 +1,34 @@
+.logoutBtn {
+    position: fixed;
+    right: 3%;
+    bottom: 6%;
+    border: none;
+    outline: none;
+    background-color: rgb(189 0 39);
+    border-radius: 0.65rem;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.4;
+    transition: opacity ease 0.3s;
+}
+
+.logoutBtn svg {
+    width: 100%;
+    fill: #f1f1f1;
+}
+
+.logoutBtn:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .logoutBtn {
+        width: 3rem;
+        height: 3rem;
+        padding: 0.7rem;
+    }
+}
