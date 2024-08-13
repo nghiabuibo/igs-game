@@ -202,7 +202,7 @@ function WordFind(props) {
                     </tbody>
                 </table>
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 d-flex flex-wrap align-items-center align-content-center">
                 {/* <h6 className="fw-bold text-white my-3">Found words</h6> */}
                 {renderFoundwords}
             </div>

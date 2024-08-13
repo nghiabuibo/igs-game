@@ -101,10 +101,10 @@
 }
 
 .showTop3 {
-    border-radius: 2rem;
+    border-radius: 0.65rem;
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
     padding: 1rem 2rem;
-    background-color: var(--main-blue);
+    background-color: var(--main-red);
     color: #fff;
     font-weight: 700;
     border: none;
@@ -115,5 +115,5 @@
 
 .showTop3:hover,
 .showTop3:focus {
-    background-color: var(--dark-blue);
+    background-color: var(--dark-red);
 }
