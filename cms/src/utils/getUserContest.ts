@@ -39,7 +39,11 @@ async function getUserContest(userID, showAnswer = false) {
             //     },
             //     limit: -1
             // })
-            const results = (strapi as Strapi).gameData.results.filter(result => result.contest.id === contestID && result.group.id === groupID)
+            const results = (strapi as Strapi).gameData.results.filter(result => {
+                return result.contest.id === contestID
+                    && result.group.id === groupID
+                    && result.attempt === gameState.currentAttempt
+            })
 
             const foundWords = []
             results.forEach(result => {
