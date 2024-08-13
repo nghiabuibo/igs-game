@@ -296,7 +296,7 @@ function Quiz(props) {
 
                     {
                         renderQuestionTitle &&
-                        <div className={`text-white fs-2 p-3 mb-3 ${styles.questionTitle}`}>
+                        <div className={`fs-2 p-3 mb-3 ${styles.questionTitle}`}>
                             {renderQuestionTitle}
                         </div>
                     }

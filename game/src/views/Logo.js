@@ -10,7 +10,7 @@ function Logo() {
                     <img src={igsLogo} className={`${styles.logo}`} alt='IGS Logo' />
                 </div>
                 <div className="col-6 text-start">
-                    <img src={eventLogo} className={`${styles.logo2}`} alt='Open House Logo' />
+                    <img src={eventLogo} className={`${styles.logo2}`} alt='Open Week Logo' />
                 </div>
             </div>
         </div>

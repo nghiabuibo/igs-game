@@ -16,7 +16,7 @@ function Waiting(props) {
                         {currentGamePack?.name}
                     </div>
                     <div className={`fw-bold ${styles.playerCount}`}>{leaderboard?.leaderboard?.length ?? 0}</div>
-                    <div className={`text-uppercase text-center fw-bold text-white ${styles.player}`}>PLAYERS ARE READY!</div>
+                    <div className={`text-uppercase text-center fw-bold ${styles.player}`}>PLAYERS ARE READY!</div>
                 </div>
             </>
             :

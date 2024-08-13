@@ -34,7 +34,7 @@ function GroupSelect() {
             <Logo />
             <div className="text-center p-3">
                 <div className="my-5">
-                    <img src={mainImg} className="img-fluid" alt="IGS Open House 2024" />
+                    <img src={mainImg} className="img-fluid" alt="IGS Open Week 2024" />
                 </div>
                 <div className="d-flex flex-column align-items-center pt-5">
                     {renderGroupSelect}

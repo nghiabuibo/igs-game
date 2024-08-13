@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import handleRequestError from "../utils/handleRequestError"
+import mainImg from "../assets/imgs/main-img.png"
 
 import styles from './Authentication.module.css'
 
@@ -41,35 +42,38 @@ function Authentication(props) {
 
     const renderGradeOptions = group?.attributes?.grades?.split(',').map(grade => {
         return (
-            <option key={grade} value={grade}>Khối {parseInt(grade) === 0 ? 'K' : grade}</option>
+            <option key={grade} value={grade}>Grade {parseInt(grade) === 0 ? 'K' : grade}</option>
         )
     })
 
     return (
         <>
             <Logo />
+            <div className="my-5 text-center">
+                <img src={mainImg} className="img-fluid" alt="IGS Open Week 2024" />
+            </div>
             <div className={`d-flex align-items-center justify-content-center ${styles.wrapper}`}>
                 <form onSubmit={handleSubmit} className={`d-flex flex-column gap-4 ${styles.registerForm}`} autoComplete="off">
                     <div>
                         <input type="text" name="contestantID" value={authInfo.contestantID} placeholder="Contestant ID" onChange={handleChange} required={true} />
                     </div>
                     <div>
-                        <input type="text" name="name" value={authInfo.name} placeholder="Họ và tên" onChange={handleChange} required={true} />
+                        <input type="text" name="name" value={authInfo.name} placeholder="Full Name" onChange={handleChange} required={true} />
                     </div>
                     <div>
-                        <input type="tel" name="phone" value={authInfo.phone} placeholder="Số điện thoại" onChange={handleChange} required={true} minLength={10} />
+                        <input type="tel" name="phone" value={authInfo.phone} placeholder="Phone number" onChange={handleChange} required={true} minLength={10} />
                     </div>
                     <div>
                         <input type="email" name="email" value={authInfo.email} placeholder="Email" onChange={handleChange} required={true} />
                     </div>
                     <div>
                         <select name="grade" value={authInfo.grade} onChange={handleChange} required={true} >
-                            <option value="">Khối lớp</option>
+                            <option value="">Grade</option>
                             {renderGradeOptions}
                         </select>
                     </div>
                     <div>
-                        <button type="submit">Bắt đầu</button>
+                        <button type="submit">START GAME</button>
                     </div>
                 </form>
             </div>

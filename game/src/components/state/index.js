@@ -24,8 +24,8 @@ function GameState(props) {
     return (
         <div className="mb-3">
             <GameStateItem className={`text-center ${styles.group}`} value={userResult?.group?.name} />
-            <GameStateItem className={styles.timer} label="Time" value={secondsToMinutesSeconds(gameState?.currentTimeLeft ?? 0)} />
-            <GameStateItem className={styles.score} label="Score" value={userResult?.totalScore ?? 0} />
+            <GameStateItem className={styles.timer} label="TIME" value={secondsToMinutesSeconds(gameState?.currentTimeLeft ?? 0)} />
+            <GameStateItem className={styles.score} label="SCORE" value={userResult?.totalScore ?? 0} />
         </div>
     )
 }

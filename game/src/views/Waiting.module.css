@@ -1,5 +1,6 @@
 .titleWrapper {
-    background-color: rgb(46 94 177 / 0.5);
+    font-family: tektur;
+    background-color: rgb(var(--main-red-rgb) / 0.5);
     max-width: 800px;
     padding: 1.5rem 2.5rem;
     border-radius: 1rem;
@@ -10,15 +11,18 @@
 }
 
 .playerCount {
+    font-family: tektur;
     font-size: 14rem;
     text-align: center;
     line-height: 1;
-    color: #fff;
+    color: var(--dark-blue);
     opacity: 0.9;
 }
 
 .player {
+    font-family: tektur;
     font-size: 3rem;
+    color: var(--dark-blue);
     opacity: 0.9;
 }
 

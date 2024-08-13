@@ -203,7 +203,7 @@ function WordFind(props) {
                 </table>
             </div>
             <div className="col-lg-3">
-                <h6 className="fw-bold text-white my-3">Các từ đã tìm được</h6>
+                {/* <h6 className="fw-bold text-white my-3">Found words</h6> */}
                 {renderFoundwords}
             </div>
         </div>

@@ -17,11 +17,11 @@ import CoverImage from './views/CoverImage';
 
 const router = createBrowserRouter([
   {
-    path: '/game',
+    path: '/contest',
     element: <GroupSelect />
   },
   {
-    path: '/game/:groupCode',
+    path: '/contest/:groupCode',
     element: <App />
   },
   {

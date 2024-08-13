@@ -1,5 +1,5 @@
 .wrapper {
-    min-height: 70vh;
+    min-height: 50vh;
 }
 .registerForm {
 	width: 100%;
@@ -9,24 +9,28 @@
 .registerForm input,
 .registerForm select,
 .registerForm button {
-	border-radius: 2rem;
-	box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+	border-radius: 0.65rem;
 	padding: 1rem 2rem;
     width: 100%;
 }
 .registerForm input,
 .registerForm select {
-	background-color: #EEFCFF;
-	color: #375972;
+	background-color: #c2c2c2;
+	color: #fff;
 	border: none;
+	font-weight: 700;
+}
+.registerForm input::placeholder,
+.registerForm select::placeholder {
+	color: #fff;
 }
 .registerForm button {
-	background-color: var(--main-blue);
+	background-color: var(--main-red);
 	color: #fff;
 	font-weight: 700;
 	border: none;
 }
 .registerForm button:hover,
 .registerForm button:focus {
-	background-color: var(--dark-blue);
+	background-color: var(--dark-red);
 }

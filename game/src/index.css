@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+@font-face {
+    font-family: tektur;
+    src: url(./assets/fonts/Tektur-VariableFont_wdth_wght.ttf);
+}
+
 #root {
     background-image: url(assets/imgs/bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
     /* overflow: hidden; */
@@ -12,8 +18,11 @@
 
 :root {
     --main-blue: #1c467e;
-	--secondary-blue: #00A4E5;
-	--dark-blue: #142F53;
-	--main-red: #FF5C5C;
-	--main-red-rgb: 255 92 92;
+    --main-blue-rgb: 28 70 126;
+    --secondary-blue: #00A4E5;
+    --secondary-blue-rgb: 0 164 229;
+    --dark-blue: #142F53;
+    --main-red: #db0036;
+    --main-red-rgb: 219 0 54;
+    --dark-red: #BD0027;
 }
