@@ -3,7 +3,7 @@ import socket from "../utils/socket";
 import handleRequestError from "../utils/handleRequestError";
 import Quiz from "../components/games/quiz";
 import WordFind from "../components/games/wordfind";
-import Leaderboard from "../components/leaderboard";
+// import Leaderboard from "../components/leaderboard";
 import GameState from "../components/state";
 import Waiting from "./Waiting";
 import Logo from "./Logo";
@@ -21,7 +21,7 @@ function Games(props) {
     const [gameState, setGameState] = useState({})
     const [userResult, setUserResult] = useState({})
     const [leaderboard, setLeaderboard] = useState([])
-    const [showTop3, setShowTop3] = useState(false)
+    const [showTop3, setShowTop3] = useState(true)
 
     // handle socket authen
     useEffect(() => {
@@ -165,7 +165,7 @@ function Games(props) {
                                         <div className="d-none d-lg-block">
                                             <GameState gameState={gameState} userResult={userResult} />
                                         </div>
-                                        <Leaderboard leaderboard={leaderboard} userResult={userResult} />
+                                        {/* <Leaderboard leaderboard={leaderboard} userResult={userResult} /> */}
                                     </div>
                                 </div>
 

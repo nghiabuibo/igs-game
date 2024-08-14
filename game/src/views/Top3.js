@@ -2,7 +2,7 @@ import Logo from "./Logo"
 import styles from "./Top3.module.css"
 
 function Top3(props) {
-    const { leaderboard, setShowTop3 } = props
+    const { leaderboard } = props
 
     const renderTop3 = leaderboard?.leaderboard?.map((top, index) => {
         if (index >= 3) return false
@@ -45,7 +45,7 @@ function Top3(props) {
                 <div className="row align-items-end mb-3">
                     {renderTop3}
                 </div>
-                <button className={`m-auto d-block ${styles.leaderboardBack}`} onClick={() => setShowTop3(false)}>Show Leaderboard</button>
+                {/* <button className={`m-auto d-block ${styles.leaderboardBack}`} onClick={() => setShowTop3(false)}>Show Leaderboard</button> */}
             </div>
         </>
     )
