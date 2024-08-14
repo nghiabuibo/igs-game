@@ -34,3 +34,8 @@
 .registerForm button:focus {
 	background-color: var(--dark-red);
 }
+
+.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
