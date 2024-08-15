@@ -878,6 +878,15 @@ export interface ApiContestSettingContestSetting extends Schema.SingleType {
   attributes: {
     contestGroups: Attribute.Component<'contest.contest-group', true>;
     bgm: Attribute.Media;
+    bgmVolume: Attribute.Float &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 1;
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

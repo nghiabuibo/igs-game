@@ -21,6 +21,10 @@ function BGM() {
             if (!response?.data?.data?.attributes?.bgm?.data?.attributes?.url) return
 
             setBgmUrl(response.data.data.attributes.bgm.data.attributes.url)
+
+            if (bgmRef?.current && response?.data?.data?.attributes?.bgmVolume) {
+                bgmRef.current.volume = response.data.data.attributes.bgmVolume
+            }
         }
         getBGM()
     }, [])
