@@ -1,5 +1,5 @@
+import { pushUpdateQueue, startQueueProcessing } from "./queue";
 import getContestGroups from "./utils/getContestGroups";
-import isDeepEqualArray from "./utils/isDeepEqualArray";
 import syncGameData from "./utils/syncGameData";
 
 export default {
@@ -21,13 +21,17 @@ export default {
   async bootstrap({ strapi }) {
     // sync game data when starting server
     await syncGameData(strapi)
+    startQueueProcessing(strapi)
 
     // set contest groups game time countdown
     setInterval(async () => {
       const contestGroups = await getContestGroups()
 
+      let isUpdateContestGroup = false
+
       const updatedContestGroups = contestGroups.map(contestGroup => {
         if (contestGroup.state.currentStatus === 'playing') {
+          if (contestGroup.state.currentTimeLeft > 0) isUpdateContestGroup = true
           contestGroup.state.currentTimeLeft--
         }
         if (contestGroup.state.currentTimeLeft === 0) {
@@ -42,11 +46,13 @@ export default {
         return contestGroup
       })
 
-      strapi.gameData.contestSettings.contestGroups = updatedContestGroups
+      if (!isUpdateContestGroup) return;
 
+      strapi.gameData.contestSettings.contestGroups = updatedContestGroups
       try {
         // const schema = strapi.entityService
-        strapi.entityService.update('api::contest-setting.contest-setting', 1, {
+        // send to queue db update
+        pushUpdateQueue('api::contest-setting.contest-setting', 1, {
           data: { contestGroups: updatedContestGroups }
         })
       } catch (err) {

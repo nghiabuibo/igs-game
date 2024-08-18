@@ -4,6 +4,7 @@ import getUserContest from "../utils/getUserContest";
 import getUserGameState from "../utils/getUserGameState";
 import vnToEn from "../utils/vnToEn";
 import gradeToGroup from "../utils/gradeToGroup";
+import { pushUpdateQueue } from "../queue";
 
 interface decodedToken {
     id: number,
@@ -131,7 +132,8 @@ async function handleGameAnswer({ strapi, io }, socket, answer) {
             },
             rooms: [socket.group.code]
         })
-        strapi.entityService.update('api::result.result', userResult.id, {
+        // send to queue db update
+        pushUpdateQueue('api::result.result', userResult.id, {
             data: {
                 answers: userAnswers,
                 totalScore,
