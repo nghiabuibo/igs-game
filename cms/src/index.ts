@@ -26,25 +26,26 @@ export default {
     setInterval(async () => {
       const contestGroups = await getContestGroups()
 
-      const clonedContestGroups = JSON.parse(JSON.stringify(contestGroups))
-      const updatedContestGroups = clonedContestGroups.map(contestGroup => {
-        const updatedContestGroup = { ...contestGroup }
-        if (updatedContestGroup.state.currentStatus === 'playing') {
-          updatedContestGroup.state.currentTimeLeft--
+      const updatedContestGroups = contestGroups.map(contestGroup => {
+        if (contestGroup.state.currentStatus === 'playing') {
+          contestGroup.state.currentTimeLeft--
         }
-        if (updatedContestGroup.state.currentTimeLeft <= 0) {
-          updatedContestGroup.state.currentTimeLeft = 0
+        if (contestGroup.state.currentTimeLeft === 0) {
+          strapi.$io.raw({
+            event: 'contest-setting:timerUpdate',
+            rooms: [contestGroup.group.code]
+          })
         }
-        return updatedContestGroup
+        if (contestGroup.state.currentTimeLeft < 0) {
+          contestGroup.state.currentTimeLeft = 0
+        }
+        return contestGroup
       })
 
-      // only update timer if there are changes
-      if (isDeepEqualArray(contestGroups, updatedContestGroups)) return
       strapi.gameData.contestSettings.contestGroups = updatedContestGroups
 
       try {
         // const schema = strapi.entityService
-        strapi.$io.raw({ event: 'contest-setting:timerUpdate' })
         strapi.entityService.update('api::contest-setting.contest-setting', 1, {
           data: { contestGroups: updatedContestGroups }
         })

@@ -3,6 +3,7 @@ import getUserResult from "../utils/getUserResult";
 import getUserContest from "../utils/getUserContest";
 import getUserGameState from "../utils/getUserGameState";
 import vnToEn from "../utils/vnToEn";
+import gradeToGroup from "../utils/gradeToGroup";
 
 interface decodedToken {
     id: number,
@@ -23,9 +24,6 @@ interface answer {
 
 async function handleGameAnswer({ strapi, io }, socket, answer) {
     try {
-        const { token } = socket.handshake.auth
-        const decoded = jwtDecode<decodedToken>(token)
-        const { id: userID } = decoded
         const answerObj = <answer>{}
         answerObj.answer = answer
         answerObj.timestamp = Date.now()
@@ -34,14 +32,14 @@ async function handleGameAnswer({ strapi, io }, socket, answer) {
         answerObj.isCorrected = false
 
         // get user current contest
-        const userContest = await getUserContest(userID, true)
+        const userContest = await getUserContest(socket, true)
 
         // get user current game state
-        const userGameState = await getUserGameState(userID)
+        const userGameState = await getUserGameState(socket)
         answerObj.timeLeft = userGameState.currentTimeLeft
 
         // get user current result
-        const userResult = await getUserResult(userID)
+        const userResult = await getUserResult(socket)
         const userAnswers: any = userResult.answers ?? []
 
         // add answer data
@@ -63,7 +61,7 @@ async function handleGameAnswer({ strapi, io }, socket, answer) {
             return
         }
 
-        const [existedAnswer] = userAnswers.filter(answer => {
+        const existedAnswer = userAnswers.find(answer => {
             if (currentQuestion.allowMultipleAnswers) {
                 return answer.__component === answerObj.__component
                     && answer.gamePackID === answerObj.gamePackID
@@ -95,7 +93,7 @@ async function handleGameAnswer({ strapi, io }, socket, answer) {
         //         break;
         // }
 
-        const [getAnswer] = currentQuestion.answers.filter(answer => {
+        const getAnswer = currentQuestion.answers.find(answer => {
             if (currentQuestion.answerType === 'input' || currentQuestion.answerType === 'matching') {
                 // convert vn chars to en, remove spaces and convert to lower case to compare answer
                 return vnToEn(answer.text).replace(/\s/g, '').toLowerCase() === vnToEn(answerObj.answer).replace(/\s/g, '').toLowerCase()
@@ -124,13 +122,14 @@ async function handleGameAnswer({ strapi, io }, socket, answer) {
         userResult.answers = userAnswers
         userResult.totalScore = totalScore
         userResult.totalCorrected = totalCorrected
-        
+
         strapi.$io.raw({
             event: 'result:update',
             data: {
                 id: userResult.id,
                 attributes: userResult
-            }
+            },
+            rooms: [socket.group.code]
         })
         strapi.entityService.update('api::result.result', userResult.id, {
             data: {

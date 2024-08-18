@@ -101,7 +101,7 @@ function WordFind(props) {
         const wordfind = WordFindModule()
 
         const foundWordsMap = question.foundWords?.map(foundWord => {
-            const [matched] = question.answers?.filter(answer => answer.id === foundWord)
+            const matched = question.answers?.find(answer => answer.id === foundWord)
             return matched.text
         })
 
@@ -149,7 +149,7 @@ function WordFind(props) {
         if (!isWordFound) return
 
         clearSelected()
-        const [answer] = question.answers?.filter(answer => answer.text?.toLowerCase() === word)
+        const answer = question.answers?.find(answer => answer.text?.toLowerCase() === word)
 
         // skip if answer incorrrect
         if (!answer) return

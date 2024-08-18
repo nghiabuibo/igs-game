@@ -7,13 +7,13 @@ interface Strapi {
 async function getContestGroup(groupID) {
     const contestGroups = await getContestGroups()
 
-    const [contestGroup] = contestGroups.filter(contestGroup => contestGroup.group?.id === groupID)
+    const contestGroup = contestGroups.find(contestGroup => contestGroup.group?.id === groupID)
 
     if (contestGroup?.state?.currentTimeLeft <= 0) {
         // const contests = await strapi.entityService.findOne('api::contest.contest', contestGroup.contest?.id, {
         //     populate: 'gamePacks.questions.answers'
         // })
-        const [contest] = (strapi as Strapi).gameData.contests.filter(contest => contest.id === contestGroup.contest.id)
+        const contest = (strapi as Strapi).gameData.contests.find(contest => contest.id === contestGroup.contest.id)
         const gamePack = contest?.gamePacks[contestGroup.state.currentGamePack]
         const question = gamePack?.questions[contestGroup.state.currentQuestion]
         const correctedAnswers = question?.answers?.filter(answer => answer.isCorrected) ?? []

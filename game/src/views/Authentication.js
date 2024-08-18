@@ -48,7 +48,7 @@ function Authentication(props) {
             email: 6,
             grade: 9
         }
-        const [foundContestant] = response.data.values.filter(contestant => {
+        const foundContestant = response.data.values.find(contestant => {
             const contestantName = contestant[contestantMap.name]
             const contestantID = contestant[contestantMap.id]
             return formatSearchString(contestantID) === formatSearchString(authInfo.contestantID)

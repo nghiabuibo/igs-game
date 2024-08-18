@@ -9,11 +9,7 @@ interface decodedToken {
 
 async function handleGetLeaderboard({ strapi, io }, socket) {
     try {
-        const { token } = socket.handshake.auth
-        const decoded = jwtDecode<decodedToken>(token)
-        const { id: userID } = decoded
-
-        const leaderboard = await getUserLeaderboard(userID)
+        const leaderboard = await getUserLeaderboard(socket)
 
         socket.emit('game:updateLeaderboard', leaderboard)
     } catch (err) {

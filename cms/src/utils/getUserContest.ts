@@ -6,13 +6,10 @@ interface Strapi {
     [key: string]: any
 }
 
-async function getUserContest(userID, showAnswer = false) {
-    // const user = await strapi.entityService.findOne('plugin::users-permissions.user', userID)
-    const [user] = (strapi as Strapi).gameData.users.filter(user => user.id === userID)
+async function getUserContest(socket, showAnswer = false) {
+    const { user, group } = socket
+    if (!user || !group) return
 
-    if (!user) return
-
-    const group = await gradeToGroup(user.grade)
     const groupID: any = group.id
     const contestGroup = await getContestGroup(groupID)
     const contestID = contestGroup?.contest?.id
@@ -21,7 +18,7 @@ async function getUserContest(userID, showAnswer = false) {
 
     // const populate = 'gamePacks.questions.illustration, gamePacks.questions.answers.media, gamePacks.coverImage'
     // const contest = await strapi.entityService.findOne('api::contest.contest', contestID, { populate })
-    const [contest] = (strapi as Strapi).gameData.contests.filter(contest => contest.id === contestID)
+    const contest = (strapi as Strapi).gameData.contests.find(contest => contest.id === contestID)
 
     if (!contest) return
 

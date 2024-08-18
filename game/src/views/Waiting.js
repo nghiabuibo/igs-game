@@ -1,3 +1,4 @@
+import { GAME_STATUS } from '../utils/defines'
 import { getMediaUrl } from '../utils/media'
 import CoverImage from './CoverImage'
 import Logo from './Logo'
@@ -7,7 +8,7 @@ function Waiting(props) {
     const { gameState, currentGamePack, leaderboard } = props
 
     return (
-        gameState.currentStatus === 'waiting' || !currentGamePack?.coverImage
+        gameState.currentStatus === GAME_STATUS.waiting || !currentGamePack?.coverImage
             ?
             <>
                 <Logo />
@@ -20,7 +21,7 @@ function Waiting(props) {
                 </div>
             </>
             :
-            <CoverImage src={getMediaUrl(currentGamePack.coverImage)} />
+            <CoverImage src={getMediaUrl(currentGamePack?.coverImage)} />
 
     )
 }

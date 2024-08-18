@@ -13,6 +13,7 @@ import Matching from "../components/games/matching";
 import { toast } from "react-toastify";
 import styles from "./Games.module.css";
 import "./GamesBg.css";
+import { GAME_STATUS } from "../utils/defines";
 // import axios from "axios";
 
 function Games(props) {
@@ -49,16 +50,17 @@ function Games(props) {
 
     // handle game state attempt change
     useEffect(() => {
-        socket.on('game:updateGameState', (gameState) => {
+        const handleGameStateChange = (gameState) => {
             if (!userResult.id || gameState.currentAttempt === userResult.attempt) return
             handleRequestError({ message: 'User already joined!' })
             handleLogout()
-        })
+        }
+        socket.on('game:updateGameState', handleGameStateChange)
 
         return () => {
-            socket.off('game:updateGameState')
+            socket.off('game:updateGameState', handleGameStateChange)
         }
-    }, [userResult.id, userResult.attempt, handleLogout])
+    }, [userResult?.id, userResult?.attempt, handleLogout])
 
     // setup socket events
     useEffect(() => {
@@ -81,6 +83,8 @@ function Games(props) {
 
         socket.on('contest-setting:timerUpdate', () => {
             socket.emit('game:getGameState')
+            // getting game pack when time's up to show the corrected answer
+            socket.emit('game:getGamePacks')
         })
 
         socket.on('result:update', (data) => {
@@ -89,6 +93,7 @@ function Games(props) {
 
             if (!userResult?.id) return
             if (userResult.id !== data.data?.id) return
+            
             const userResultMap = {
                 id: data.data.id,
                 ...data.data.attributes
@@ -97,8 +102,7 @@ function Games(props) {
         })
 
         socket.on('admin:syncedGameData', () => {
-            const isSyncedGameData = true
-            socket.emit('user:connection', isSyncedGameData)
+            window.location.reload()
         })
 
         socket.on('socket:error', handleRequestError)
@@ -118,11 +122,20 @@ function Games(props) {
         }
     }, [userResult?.id])
 
+    // setup document events
     useEffect(() => {
-        // getting game pack when time's up will show the corrected answer
-        if (gameState?.currentTimeLeft > 0) return
-        socket.emit('game:getGamePacks')
-    }, [gameState?.currentTimeLeft])
+        const handleVisibilityChange = () => {
+            if (!document.hidden) {
+                const isSyncedGameData = true
+                socket.emit('user:connection', isSyncedGameData)
+            }
+        }
+        document.addEventListener('visibilitychange', handleVisibilityChange)
+
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibilityChange)
+        }
+    }, [])
 
     const handleAnswer = (answer) => {
         // skip if time's up
@@ -141,11 +154,11 @@ function Games(props) {
         <div className="container">
             <div className="row">
                 {
-                    gameState?.currentStatus === 'ended'
+                    gameState?.currentStatus === GAME_STATUS.ended
                         ?
                         showTop3 ? <Top3 leaderboard={leaderboard} setShowTop3={setShowTop3} /> : <Leaderboards leaderboard={leaderboard} setShowTop3={setShowTop3} />
                         :
-                        !gameState?.currentStatus || gameState?.currentStatus === 'waiting' || gameState?.currentStatus === 'paused'
+                        !gameState?.currentStatus || gameState?.currentStatus === GAME_STATUS.waiting || gameState?.currentStatus === GAME_STATUS.paused
                             ?
                             <Waiting gameState={gameState} currentGamePack={currentGamePack} leaderboard={leaderboard} />
                             :
@@ -156,7 +169,7 @@ function Games(props) {
 
                                 <div className="col-lg-6 d-flex align-items-center">
                                     <div className={`py-2 px-4 m-auto ms-lg-auto me-lg-0 text-center text-white fw-bold fs-3 d-inline-block ${styles.gamePackName}`}>
-                                        {currentGamePack.name}
+                                        {currentGamePack?.name}
                                     </div>
                                 </div>
 
@@ -178,15 +191,15 @@ function Games(props) {
                                             ?
                                             <>
                                                 {
-                                                    currentGamePack.__component === 'game-packs.quiz-packs' &&
+                                                    currentGamePack?.__component === 'game-packs.quiz-packs' &&
                                                     <Quiz gamePack={currentGamePack} question={currentQuestion} userResult={userResult} gameState={gameState} handleAnswer={handleAnswer} />
                                                 }
                                                 {
-                                                    currentGamePack.__component === 'game-packs.word-find-packs' &&
+                                                    currentGamePack?.__component === 'game-packs.word-find-packs' &&
                                                     <WordFind question={currentQuestion} gameState={gameState} handleAnswer={handleAnswer} />
                                                 }
                                                 {
-                                                    currentGamePack.__component === 'game-packs.matching-packs' &&
+                                                    currentGamePack?.__component === 'game-packs.matching-packs' &&
                                                     <Matching gamePack={currentGamePack} question={currentQuestion} userResult={userResult} gameState={gameState} handleAnswer={handleAnswer} />
                                                 }
                                             </>

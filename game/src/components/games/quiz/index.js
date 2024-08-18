@@ -1,5 +1,5 @@
 import styles from './quiz.module.css'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { getMediaUrl } from '../../../utils/media'
 import Markdown from 'react-markdown'
 import shuffleArray from '../../../utils/shuffleArray'
@@ -119,12 +119,12 @@ function Quiz(props) {
 
             renderAnswer = answers.map(answer => {
                 let isSelected, isCorrected, isInCorrected, correctedAnswer
-                const [userSelected] = userResult?.answers?.filter(userAnswer => {
+                const userSelected = userResult?.answers?.find(userAnswer => {
                     return userAnswer.__component === gamePack.__component
                         && userAnswer.gamePackID === gamePack.id
                         && userAnswer.questionID === question.id
                         && userAnswer.answer === answer.id
-                }) ?? []
+                })
                 if (userSelected) isSelected = true
 
                 // only show result when time's up
@@ -180,7 +180,7 @@ function Quiz(props) {
                 <>
                     {
                         !gameState?.currentTimeLeft && isInCorrected &&
-                        <div className={styles.answer}>{answers?.filter(answer => answer.isCorrected)[0]?.text}</div>
+                        <div className={styles.answer}>{answers?.find(answer => answer.isCorrected)?.text}</div>
                     }
                     <form onSubmit={handleInputAnswerSubmit} className={styles.answerInputWrapper}>
                         <input
@@ -232,11 +232,11 @@ function Quiz(props) {
 
             renderQuestionTitle = reactStringReplace(question?.title, '[]', () => (
                 matchingAnswerFillInput
-            )).map(part => {
+            )).map((part, index) => {
                 if (typeof part === 'string') {
-                    return <Markdown components={{ p: 'span' }}>{part}</Markdown>
+                    return <Markdown key={index} components={{ p: 'span' }}>{part}</Markdown>
                 }
-                return part
+                return <Fragment key={index}>{part}</Fragment>
             })
 
             renderAnswer = matchingAnswers?.map((matchingAnswer) => {
@@ -255,7 +255,7 @@ function Quiz(props) {
             renderAnswer = <>
                 {
                     !gameState?.currentTimeLeft && isInCorrected &&
-                    <div className={styles.answer}>{answers?.filter(answer => answer.isCorrected)[0]?.text.split(MATCHING_DELIMITER).join('')}</div>
+                    <div className={styles.answer}>{answers?.find(answer => answer.isCorrected)?.text.split(MATCHING_DELIMITER).join('')}</div>
                 }
                 <div className={`d-flex align-items-center justify-content-center flex-wrap gap-3`}>
                     {renderAnswer}

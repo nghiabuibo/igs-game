@@ -24,6 +24,8 @@ function removeSpacesAndLowerCase(str) {
 }
 
 function formatSearchString(str) {
+    if (!str) return;
+    
     str = toNonAccentVietnamese(str)
     str = removeSpacesAndLowerCase(str)
     return str;

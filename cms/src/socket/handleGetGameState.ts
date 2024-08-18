@@ -9,11 +9,7 @@ interface decodedToken {
 
 async function handleGetGameState({ strapi, io }, socket) {
     try {
-        const { token } = socket.handshake.auth
-        const decoded = jwtDecode<decodedToken>(token)
-        const { id: userID } = decoded
-
-        const userGameState = await getUserGameState(userID)
+        const userGameState = await getUserGameState(socket)
 
         socket.emit('game:updateGameState', userGameState)
     } catch (err) {

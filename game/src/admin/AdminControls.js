@@ -3,14 +3,17 @@ import socket from "../utils/socket"
 import handleRequestError from "../utils/handleRequestError"
 import Logo from "../views/Logo"
 import { toast } from "react-toastify"
+import { GAME_STATUS } from "../utils/defines"
 
 function AdminControls(props) {
     const { adminToken, setAdminToken } = props
     const [contestGroups, setContestGroups] = useState([])
     const [time, setTime] = useState(null)
-    const defaultGameStatusGameChange = 'paused'
-    const defaultGameStatusQuestionChange = 'playing'
-    const defaultGameStatusAttemptChange = 'waiting'
+    const [contestGroupstimeLeft, setContestGroupTimeLeft] = useState({})
+
+    const defaultGameStatusGameChange = GAME_STATUS.paused
+    const defaultGameStatusQuestionChange = GAME_STATUS.playing
+    const defaultGameStatusAttemptChange = GAME_STATUS.waiting
 
     // handle socket authen
     useEffect(() => {
@@ -66,6 +69,44 @@ function AdminControls(props) {
         }
     }, [])
 
+    // countdown timer
+    useEffect(() => {
+        // reset timer on change
+        contestGroups.forEach(contestGroup => {
+            setContestGroupTimeLeft(prevState => ({
+                ...prevState,
+                [contestGroup.id]: contestGroup.state.currentTimeLeft
+            }))
+        })
+
+        // start countdown timer
+        const timerInterval = setInterval(() => {
+            contestGroups.forEach(contestGroup => {
+                setContestGroupTimeLeft(prevState => {
+                    let nextTimeLeft = prevState[contestGroup.id] || 0
+
+                    if (contestGroup.state.currentStatus === GAME_STATUS.playing) {
+                        nextTimeLeft--
+                    }
+
+                    if (nextTimeLeft <= 0) {
+                        return {
+                            ...prevState,
+                            [contestGroup.id]: 0
+                        }
+                    }
+
+                    return {
+                        ...prevState,
+                        [contestGroup.id]: nextTimeLeft
+                    };
+                })
+            })
+        }, 1000);
+
+        return () => clearInterval(timerInterval);
+    }, [contestGroups])
+
     const handleChangeGame = (contestGroupID, action) => {
         const newContestGroups = [...contestGroups]
         for (const i in newContestGroups) {
@@ -98,7 +139,7 @@ function AdminControls(props) {
             }
             newContestGroup.state.currentGamePack = value
             newContestGroup.state.currentQuestion = 0
-            newContestGroup.state.currentTimeLeft = newContestGroup.contest.gamePacks[value]?.questions?.[0]?.timeLimit ?? null
+            newContestGroup.state.currentTimeLeft = newContestGroup.contest.gamePacks[value]?.questions?.[0]?.timeLimit || 0
             break;
         }
         socket.emit('admin:updateContestGroups', newContestGroups)
@@ -137,7 +178,7 @@ function AdminControls(props) {
                     break;
             }
             newContestGroup.state.currentQuestion = value
-            newContestGroup.state.currentTimeLeft = newContestGroup.contest.gamePacks[currentGamePack]?.questions?.[value]?.timeLimit ?? null
+            newContestGroup.state.currentTimeLeft = newContestGroup.contest.gamePacks[currentGamePack]?.questions?.[value]?.timeLimit || 0
             break;
         }
         socket.emit('admin:updateContestGroups', newContestGroups)
@@ -175,7 +216,7 @@ function AdminControls(props) {
             newContestGroup.state.currentAttempt = value
             newContestGroup.state.currentQuestion = 0
             newContestGroup.state.currentGamePack = 0
-            newContestGroup.state.currentTimeLeft = newContestGroup.contest.gamePacks[0]?.questions?.[0]?.timeLimit ?? null
+            newContestGroup.state.currentTimeLeft = newContestGroup.contest.gamePacks[0]?.questions?.[0]?.timeLimit || 0
             break;
         }
         socket.emit('admin:updateContestGroups', newContestGroups)
@@ -200,6 +241,7 @@ function AdminControls(props) {
             if (newContestGroup.id !== contestGroupID) continue;
 
             newContestGroup.state.currentStatus = action
+            newContestGroup.state.currentTimeLeft = contestGroupstimeLeft[contestGroupID] || 0
             break;
         }
         socket.emit('admin:updateContestGroups', newContestGroups)
@@ -248,7 +290,7 @@ function AdminControls(props) {
                             <button className="btn btn-primary me-2 mb-2" onClick={() => handleChangeAttempt(contestGroup.id, 'next')}>Next</button>
                         </td>
                         <td>
-                            {contestGroup.state?.currentTimeLeft}
+                            {contestGroupstimeLeft[contestGroup.id]}
                             <br /><br />
                             <div className="d-md-flex gap-2 align-items-center">
                                 <input className="form-control mb-2" style={{ minWidth: '100px' }} type="number" name="time" onChange={(e) => setTime(e.target.value)} />
@@ -258,10 +300,10 @@ function AdminControls(props) {
                         <td>
                             {contestGroup.state?.currentStatus}
                             <br /><br />
-                            <button className="btn btn-secondary me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, 'waiting')}>Wait</button>
-                            <button className="btn btn-success me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, 'playing')}>Start</button>
-                            <button className="btn btn-secondary me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, 'paused')}>Pause</button>
-                            <button className="btn btn-danger me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, 'ended')}>End</button>
+                            <button className="btn btn-secondary me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, GAME_STATUS.waiting)}>Wait</button>
+                            <button className="btn btn-success me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, GAME_STATUS.playing)}>Start</button>
+                            <button className="btn btn-secondary me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, GAME_STATUS.paused)}>Pause</button>
+                            <button className="btn btn-danger me-2 mb-2" onClick={() => handleChangeStatus(contestGroup.id, GAME_STATUS.ended)}>End</button>
                         </td>
                     </tr>
                 </tbody>
