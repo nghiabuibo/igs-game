@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 import styles from "./Games.module.css";
 import "./GamesBg.css";
 import { GAME_STATUS } from "../utils/defines";
+import coverImgSrc from "../assets/imgs/LDP-GAME.jpg";
+import CoverImage from "./CoverImage";
 // import axios from "axios";
 
 function Games(props) {
@@ -156,7 +158,8 @@ function Games(props) {
                 {
                     gameState?.currentStatus === GAME_STATUS.ended
                         ?
-                        showTop3 ? <Top3 leaderboard={leaderboard} setShowTop3={setShowTop3} /> : <Leaderboards leaderboard={leaderboard} setShowTop3={setShowTop3} />
+                        // showTop3 ? <Top3 leaderboard={leaderboard} setShowTop3={setShowTop3} /> : <Leaderboards leaderboard={leaderboard} setShowTop3={setShowTop3} />
+                        <CoverImage src={coverImgSrc} />
                         :
                         !gameState?.currentStatus || gameState?.currentStatus === GAME_STATUS.waiting || gameState?.currentStatus === GAME_STATUS.paused
                             ?
