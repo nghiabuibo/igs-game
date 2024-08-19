@@ -133,7 +133,7 @@ function Authentication(props) {
                                 <input type="email" name="email" value={authInfo.email} placeholder="Email" onChange={handleChange} required={true} readOnly={true} />
                             </div>
                             <div>
-                                <select name="grade" value={authInfo.grade} onChange={handleChange} required={true} disabled={true} >
+                                <select name="grade" value={authInfo.grade} onChange={handleChange} required={true} className={styles.disabled} >
                                     <option value="">Grade</option>
                                     {renderGradeOptions}
                                 </select>
