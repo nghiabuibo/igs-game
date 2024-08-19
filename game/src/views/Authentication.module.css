@@ -41,3 +41,8 @@
 	user-select: none;
 	pointer-events: none;
 }
+
+.readOnly {
+	user-select: none;
+	pointer-events: none;
+}
