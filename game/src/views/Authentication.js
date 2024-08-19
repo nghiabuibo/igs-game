@@ -60,6 +60,11 @@ function Authentication(props) {
             return;
         }
 
+        if (!foundContestant[contestantMap.email]) {
+            toast.error('Email is required!', { theme: 'colored' })
+            return;
+        }
+
         // remap grade K
         if (foundContestant[contestantMap.grade] === 'K') foundContestant[contestantMap.grade] = '0'
 
@@ -75,7 +80,7 @@ function Authentication(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!authInfo.phone) {
+        if (!authInfo.email) {
             validateInfo()
             return
         }
@@ -113,13 +118,13 @@ function Authentication(props) {
             <div className={`d-flex align-items-center justify-content-center ${styles.wrapper}`}>
                 <form onSubmit={handleSubmit} className={`d-flex flex-column gap-4 ${styles.registerForm}`} autoComplete="off">
                     <div>
-                        <input type="text" name="contestantID" value={authInfo.contestantID} placeholder="Contestant ID" onChange={handleChange} required={true} readOnly={authInfo.phone ? true : false} />
+                        <input type="text" name="contestantID" value={authInfo.contestantID} placeholder="Contestant ID" onChange={handleChange} required={true} readOnly={authInfo.email ? true : false} />
                     </div>
                     <div>
-                        <input type="text" name="name" value={authInfo.name} placeholder="Full Name" onChange={handleChange} required={true} readOnly={authInfo.phone ? true : false} />
+                        <input type="text" name="name" value={authInfo.name} placeholder="Full Name" onChange={handleChange} required={true} readOnly={authInfo.email ? true : false} />
                     </div>
                     {
-                        authInfo.phone &&
+                        authInfo.email &&
                         <>
                             <div>
                                 <input type="tel" name="phone" value={authInfo.phone} placeholder="Phone number" onChange={handleChange} required={true} minLength={10} readOnly={true} />
@@ -128,7 +133,7 @@ function Authentication(props) {
                                 <input type="email" name="email" value={authInfo.email} placeholder="Email" onChange={handleChange} required={true} readOnly={true} />
                             </div>
                             <div>
-                                <select name="grade" value={authInfo.grade} onChange={handleChange} required={true} >
+                                <select name="grade" value={authInfo.grade} onChange={handleChange} required={true} readOnly={true} >
                                     <option value="">Grade</option>
                                     {renderGradeOptions}
                                 </select>
@@ -137,7 +142,7 @@ function Authentication(props) {
                     }
                     <div>
                         <button type="submit" disabled={isLoading} className={isLoading ? styles.disabled : ''}>
-                            {authInfo.phone ? 'CONFIRM AND START' : 'CONTINUE'}
+                            {authInfo.email ? 'CONFIRM AND START' : 'CONTINUE'}
                         </button>
                     </div>
                 </form>
