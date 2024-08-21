@@ -9,8 +9,9 @@ import volumeSlashSVG from '../../assets/svgs/volume-slash.svg';
 
 function BGM() {
     const [bgmUrl, setBgmUrl] = useState()
+    const [bgmVolume, setBgmVolume] = useState(1)
     const bgmRef = useRef(null)
-    const [volumeSrc, setVolumeSrc] = useState(volumeSVG)
+    const [volumeBtn, setVolumeBtn] = useState(volumeSVG)
 
     useEffect(() => {
         const getBGM = async () => {
@@ -18,26 +19,26 @@ function BGM() {
             const endpoint = '/contest-setting?populate=bgm'
             const response = await axios.get(apiUrl + endpoint).catch(handleRequestError)
 
-            if (!response?.data?.data?.attributes?.bgm?.data?.attributes?.url) return
-
-            setBgmUrl(response.data.data.attributes.bgm.data.attributes.url)
-
-            if (bgmRef?.current && response?.data?.data?.attributes?.bgmVolume) {
-                bgmRef.current.volume = response.data.data.attributes.bgmVolume
-            }
+            setBgmUrl(response?.data?.data?.attributes?.bgm?.data?.attributes?.url)
+            setBgmVolume(response?.data?.data?.attributes?.bgmVolume || 1)
         }
         getBGM()
     }, [])
 
+    useEffect(() => {
+        if (!bgmRef?.current) return;
+        bgmRef.current.volume = bgmVolume
+    }, [bgmVolume])
+
     const handleTogglePaused = () => {
         if (bgmRef.current.paused) {
             bgmRef.current.play()
-            setVolumeSrc(volumeSVG)
+            setVolumeBtn(volumeSVG)
             return
         }
 
         bgmRef.current.pause()
-        setVolumeSrc(volumeSlashSVG)
+        setVolumeBtn(volumeSlashSVG)
     }
 
     return (
@@ -47,7 +48,7 @@ function BGM() {
             </audio>
 
             <div className={styles.togglePaused} onClick={handleTogglePaused}>
-                <img src={volumeSrc} alt='Toggle Paused' />
+                <img src={volumeBtn} alt='Toggle Paused' />
             </div>
         </>
     )
